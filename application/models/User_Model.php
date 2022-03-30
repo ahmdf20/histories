@@ -119,8 +119,9 @@ class User_Model extends CI_Model
       'user_id' => $this->session->userdata('id'),
       'destination' => $this->input->post('destination'),
       'location' => $this->input->post('location'),
+      'temperature' => $this->input->post('temperature'),
       'date' => date('Y-m-d'),
-      'time' => date('H:i:s', time() + 60 * 60 * 7)
+      'time' => date('H:i:s')
     ];
     $this->db->insert('data-activity', $data);
   }

@@ -31,6 +31,7 @@ class User extends CI_Controller
   {
     $this->form_validation->set_rules('destination', 'Destination', 'required|trim');
     $this->form_validation->set_rules('location', 'Location', 'required|trim');
+    $this->form_validation->set_rules('temperature', 'Temperature', 'required|trim');
 
     if ($this->form_validation->run() == false) {
       $this->load->view('user/add-activity', [

@@ -52,4 +52,19 @@ class Activity_Model extends CI_Model
       ->order_by('time', 'DESC');
     return $this->db->get()->result();
   }
+
+  public function find_all_activity_by_session($query, $opt)
+  {
+    $this->db->select('*')
+      ->from('data-activity da');
+    if ($opt == "month") {
+      $this->db->where('MONTH(date)', $query);
+    } else {
+      $this->db->where('YEAR(date)', $query);
+    }
+    $this->db->where('user_id', $this->session->userdata('id'))
+      ->order_by('date', 'DESC')
+      ->order_by('time', 'DESC');
+    return $this->db->get()->result();
+  }
 }

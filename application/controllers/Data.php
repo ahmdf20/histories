@@ -24,6 +24,7 @@ class Data extends CI_Controller
         <td>$i</td>
         <td>$data->destination</td>
         <td>$data->date | $data->time</td>
+        <td>$data->temperature&deg;C</td>
       </tr>";
     }
     echo $output;

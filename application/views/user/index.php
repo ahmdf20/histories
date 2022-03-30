@@ -90,8 +90,7 @@
         <div class="card-body">
           <div class="container">
             <div class="row">
-              <?php foreach ($activity as $key => $a) : ?>
-                <?php if ($key == 6) break ?>
+              <?php foreach ($activity as $key => $a) : if ($key == 6) break  ?>
                 <div class="col-lg-4">
                   <div class="card border">
                     <div class="card-body">

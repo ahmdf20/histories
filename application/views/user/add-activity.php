@@ -17,9 +17,9 @@
   </div>
 </div>
 <!-- Page content -->
-<div class="container-fluid mt--6">
-  <div class="row">
-    <div class="col-xl">
+<div class="container-fluid">
+  <div class="row mt--6">
+    <div class="col-xl-6">
       <div class="card">
         <div class="card-body">
           <div class="container">
@@ -35,6 +35,10 @@
                     <label for="location">Location</label>
                     <textarea name="location" id="location" class="form-control" cols="30" rows="10"></textarea>
                     <small class="text-danger"><?= form_error('location') ?></small>
+                  </div>
+                  <div class="form-group">
+                    <label for="temperature">Temperature</label>
+                    <input type="number" name="temperature" id="temperature" class="form-control">
                   </div>
                   <button type="submit" class="btn btn-md btn-success">Add</button>
                   <a href="<?= base_url('user/see_activity') ?>" class="btn btn-md btn-danger">Cancel</a>
