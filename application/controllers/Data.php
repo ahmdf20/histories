@@ -7,6 +7,12 @@ class Data extends CI_Controller
     parent::__construct();
   }
 
+  public function update_checkout($id)
+  {
+    $this->Activity->put_checkout($id);
+    redirect('user/see_activity');
+  }
+
   public function data_activity()
   {
     $query = '';
@@ -19,12 +25,17 @@ class Data extends CI_Controller
     $data = $this->Activity->load_data_activity($id, $query);
     foreach ($data as $key => $data) {
       $i = $key + 1;
+      $url = base_url('data/update_checkout/' . $data->id);
       $output .= "
       <tr title='$data->location'>
         <td>$i</td>
         <td>$data->destination</td>
-        <td>$data->date | $data->time</td>
+        <td>$data->checkin_date | $data->checkin_time</td>
+        <td>$data->checkout_date | $data->checkout_time</td>
         <td>$data->temperature&deg;C</td>
+        <td>
+          <a href='$url' class='btn btn-sm btn-warning'>Check Out</a>
+        </td>
       </tr>";
     }
     echo $output;

@@ -53,7 +53,7 @@ class User_Model extends CI_Model
     if ($image_upload) {
       $config = [
         'upload_path' => './assets/img/profiles/',
-        'allowed_types' => 'gif|jpg|png',
+        'allowed_types' => 'gif|jpg|png|jpeg',
         'max_sizes' => '4092',
       ];
 
@@ -89,8 +89,8 @@ class User_Model extends CI_Model
     $this->db->select('*')
       ->from('data-activity')
       ->where('user_id', $this->session->userdata('id'))
-      ->where('MONTH(date)', date('m'))
-      ->order_by('date', 'DESC');
+      ->where('MONTH(checkin_date)', date('m'))
+      ->order_by('checkin_date', 'DESC');
 
     return $this->db->get()->result_array();
   }
@@ -100,8 +100,8 @@ class User_Model extends CI_Model
     $this->db->select('*')
       ->from('data-activity')
       ->where('user_id', $this->session->userdata('id'))
-      ->where('YEAR(date)', date('Y'))
-      ->order_by('date', 'DESC');
+      ->where('YEAR(checkin_date)', date('Y'))
+      ->order_by('chekin_date', 'DESC');
 
     return $this->db->get()->result_array();
   }
@@ -120,8 +120,8 @@ class User_Model extends CI_Model
       'destination' => $this->input->post('destination'),
       'location' => $this->input->post('location'),
       'temperature' => $this->input->post('temperature'),
-      'date' => date('Y-m-d'),
-      'time' => date('H:i:s')
+      'checkin_date' => date('Y-m-d'),
+      'checkin_time' => date('H:i:s')
     ];
     $this->db->insert('data-activity', $data);
   }

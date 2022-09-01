@@ -59,8 +59,10 @@
                       <tr>
                         <th>#</th>
                         <th>Destination</th>
-                        <th>Timestamp</th>
+                        <th>Check In</th>
+                        <th>Check Out</th>
                         <th>Temperature</th>
+                        <th>Options</th>
                       </tr>
                     </thead>
                     <tbody id="data-activity">

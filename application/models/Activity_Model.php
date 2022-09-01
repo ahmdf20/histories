@@ -12,11 +12,11 @@ class Activity_Model extends CI_Model
     $this->db->select('*')
       ->from('data-activity');
     if ($opt == 'year-month') {
-      $this->db->where('YEAR(date)', $con['year'])->where('MONTH(date)', $con['month']);
+      $this->db->where('YEAR(checkin_date)', $con['year'])->where('MONTH(checkin_date)', $con['month']);
     } else if ($opt == 'year') {
-      $this->db->where('YEAR(date)', $con['year']);
+      $this->db->where('YEAR(checkin_date)', $con['year']);
     } else {
-      $this->db->where('MONTH(date)', $con['month']);
+      $this->db->where('MONTH(checkin_date)', $con['month']);
     }
     return $this->db->get()->result();
   }
@@ -26,14 +26,14 @@ class Activity_Model extends CI_Model
     $this->db->select('*')
       ->from('data-activity');
     if ($opt == 'year') {
-      $this->db->where('YEAR(date)', $con);
+      $this->db->where('YEAR(checkin_date)', $con);
     } else if ($opt == 'month') {
-      $this->db->where('MONTH(date)', $con);
+      $this->db->where('MONTH(checkin_date)', $con);
     } else {
       $this->db->where('user_id', $con);
     }
-    $this->db->order_by('date', 'DESC')
-      ->order_by('time', 'DESC');
+    $this->db->order_by('checkin_date', 'DESC')
+      ->order_by('checkin_time', 'DESC');
     return $this->db->get()->result();
   }
 
@@ -44,12 +44,12 @@ class Activity_Model extends CI_Model
     if ($query != '') {
       $this->db->like('destination', $query)
         ->or_like('location', $query)
-        ->or_like('date', $query)
-        ->or_like('time', $query);
+        ->or_like('checkin_date', $query)
+        ->or_like('checkin_time', $query);
     }
     $this->db->where('user_id', $id)
-      ->order_by('date', 'DESC')
-      ->order_by('time', 'DESC');
+      ->order_by('checkin_date', 'DESC')
+      ->order_by('checkin_time', 'DESC');
     return $this->db->get()->result();
   }
 
@@ -58,13 +58,24 @@ class Activity_Model extends CI_Model
     $this->db->select('*')
       ->from('data-activity da');
     if ($opt == "month") {
-      $this->db->where('MONTH(date)', $query);
+      $this->db->where('MONTH(checkin_date)', $query);
     } else {
-      $this->db->where('YEAR(date)', $query);
+      $this->db->where('YEAR(checkin_date)', $query);
     }
     $this->db->where('user_id', $this->session->userdata('id'))
-      ->order_by('date', 'DESC')
-      ->order_by('time', 'DESC');
+      ->order_by('checkin_date', 'DESC')
+      ->order_by('checkin_time', 'DESC');
     return $this->db->get()->result();
+  }
+
+  public function put_checkout($id)
+  {
+    $data = [
+      'checkout_date' => date('Y-m-d'),
+      'checkout_time' => date('H:i:s')
+    ];
+
+    $this->db->where('id', $id);
+    $this->db->update('data-activity', $data);
   }
 }
