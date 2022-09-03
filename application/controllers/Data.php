@@ -7,12 +7,6 @@ class Data extends CI_Controller
     parent::__construct();
   }
 
-  public function update_checkout($id)
-  {
-    $this->Activity->put_checkout($id);
-    redirect('user/see_activity');
-  }
-
   public function data_activity()
   {
     $query = '';
@@ -23,6 +17,7 @@ class Data extends CI_Controller
       $query = $this->input->post('query');
     }
     $data = $this->Activity->load_data_activity($id, $query);
+    // var_dump($data);
     foreach ($data as $key => $data) {
       $i = $key + 1;
       $url = base_url('data/update_checkout/' . $data->id);
@@ -33,6 +28,7 @@ class Data extends CI_Controller
         <td>$data->checkin_date | $data->checkin_time</td>
         <td>$data->checkout_date | $data->checkout_time</td>
         <td>$data->temperature&deg;C</td>
+        <td>$data->date_diff day - $data->duration</td>
         <td>
           <a href='$url' class='btn btn-sm btn-warning'>Check Out</a>
         </td>
@@ -128,5 +124,11 @@ class Data extends CI_Controller
       ";
     }
     echo $output;
+  }
+
+  public function update_checkout($id)
+  {
+    $this->Activity->put_checkout($id);
+    redirect('user/see_activity');
   }
 }

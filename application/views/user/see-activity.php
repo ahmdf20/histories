@@ -62,6 +62,7 @@
                         <th>Check In</th>
                         <th>Check Out</th>
                         <th>Temperature</th>
+                        <th>Duration</th>
                         <th>Options</th>
                       </tr>
                     </thead>

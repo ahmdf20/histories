@@ -95,7 +95,7 @@
                   <div class="card border">
                     <div class="card-body">
                       <h2><?= $a->destination ?></h2>
-                      <small class="text-muted float-right"><?= $a->date ?> <?= $a->time ?></small>
+                      <small class="text-muted float-right"><?= $a->checkin_date ?> <?= $a->checkin_time ?></small>
                     </div>
                   </div>
                 </div>

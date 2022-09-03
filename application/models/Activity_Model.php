@@ -39,7 +39,7 @@ class Activity_Model extends CI_Model
 
   public function load_data_activity($id, $query)
   {
-    $this->db->select('*')
+    $this->db->select('*, TIMEDIFF(checkout_time, checkin_time) as duration, DATEDIFF(checkout_date, checkin_date) as date_diff')
       ->from('data-activity da');
     if ($query != '') {
       $this->db->like('destination', $query)
